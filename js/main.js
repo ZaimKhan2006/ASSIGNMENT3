@@ -22,7 +22,7 @@ const showAd = () => {
 
 const skipAd = () => {
   popupOverlay.classList.remove("active");
-  popupOverlay.remove(); // Remove the popup overlay
+  popupOverlay.remove(); 
 };
 
 skipButton.addEventListener("click", () => {
