@@ -2,17 +2,9 @@ const popupOverlay = document.querySelector(".popup-overlay");
 const skipButton = document.querySelector(".popup-container .skip-button");
 const visitButton = document.querySelector(".popup-container .visit-button");
 
-let remainingTime = 3;
+let remainingTime = 5;
 let allowedToSkip = false;
 let popupTimer;
-
-const createPopupCookie = () => {
-  let expiresDays = 30;
-  let date = new Date();
-  date.setTime(date.getTime() + expiresDays * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + date.toUTCString();
-  document.cookie = `popupCookie=true; ${expires}; path=/;`;
-};
 
 const showAd = () => {
   popupOverlay.classList.add("active");
@@ -30,8 +22,7 @@ const showAd = () => {
 
 const skipAd = () => {
   popupOverlay.classList.remove("active");
-  createPopupCookie();
-  popupOverlay.remove(); // Add this line to remove the popup overlay
+  popupOverlay.remove(); // Remove the popup overlay
 };
 
 skipButton.addEventListener("click", () => {
@@ -40,13 +31,4 @@ skipButton.addEventListener("click", () => {
   }
 });
 
-const startTimer = () => {
-  if (window.scrollY > 100) {
-    showAd();
-    window.removeEventListener("scroll", startTimer);
-  }
-};
-
-if (!document.cookie.match(/^(.*;)?\s*popupCookie\s*=\s*[^;]+(.*)?$/)) {
-  window.addEventListener("scroll", startTimer);
-}
+showAd(); // Show the popup overlay every time the page loads
