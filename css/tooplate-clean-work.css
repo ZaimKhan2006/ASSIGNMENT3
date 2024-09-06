@@ -170,6 +170,7 @@ strong {
 .section-overlay + .container {
   position: relative;
 }
+
 .col-lg-12.col-12 {
     text-align: center;
 }
